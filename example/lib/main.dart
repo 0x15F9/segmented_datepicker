@@ -47,22 +47,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: const Text("Segmented Datepicker"),
-      ),
-      body: const Center(
-        child: SegmentedDatepicker(),
+      appBar: AppBar(title: const Text("Segmented Datepicker")),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SegmentedDatepicker(controller: _controller),
+            const SizedBox(height: 16),
+            Text('Date: ${_controller.text}'),
+            OutlinedButton(
+              onPressed: () => setState(() {}),
+              child: const Text('refresh'),
+            )
+          ],
+        ),
       ),
     );
   }
